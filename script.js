@@ -12,6 +12,7 @@ window.addEventListener("load", function () {
 // Slider functionality
 let currentSlide = 0;
 const slides = document.querySelectorAll(".slide");
+const slider = document.querySelector(".slider");
 const dotsContainer = document.querySelector(".slider-dots");
 
 // Create dots
@@ -33,15 +34,13 @@ function showSlide(n) {
     currentSlide = slides.length - 1;
   }
 
-  slides.forEach((slide) => {
-    slide.classList.remove("active");
-  });
+  // Update slider position for sliding effect
+  slider.style.transform = `translateX(-${currentSlide * 100}%)`;
 
+  // Update dots
   dots.forEach((dot) => {
     dot.classList.remove("active");
   });
-
-  slides[currentSlide].classList.add("active");
   dots[currentSlide].classList.add("active");
 }
 
@@ -157,4 +156,123 @@ document.querySelectorAll("section").forEach((section) => {
   section.style.transform = "translateY(20px)";
   section.style.transition = "opacity 0.6s ease, transform 0.6s ease";
   observer.observe(section);
+});
+
+// Photo Gallery
+const photoFiles = [
+  "0M7A4857.jpg",
+  "0M7A6596.jpg",
+  "0M7A9144.jpg",
+  "831A8777_1.jpg",
+  "Aquilina_Domenic_MLT_Twin_Thoughts.jpg",
+  "BB9I4613.jpg",
+  "BB9I5630.jpg",
+  "C80I5348.jpg",
+  "CM6A7367.jpg",
+  "CM6A7975.jpg",
+  "DA-BB9I9683-MLT.jpg",
+  "DA_074A3288.jpg",
+  "DA_074A4699.jpg",
+  "DA_074A5002.jpg",
+  "DA_074A5405.jpg",
+  "DA_074A5652.jpg",
+  "DA_074A6386.jpg",
+  "DA_074A6466.jpg",
+  "DA_074A8463.jpg",
+  "DA_0M7A1077fb.jpg",
+  "DA_0M7A2958.jpg",
+  "DA_0M7A6223.jpg",
+  "DA_0M7A9017.jpg",
+  "DA_831A9416.jpg",
+  "DA_C80I1882.jpg",
+  "DA_C80I4233.jpg",
+  "DA_CM6A0456.jpg",
+  "DA_CM6A0729.jpg",
+  "DA_CM6A1490.jpg",
+  "DA_MLT_C80I4703.jpg",
+];
+
+const photoGrid = document.getElementById("photo-grid");
+let galleryImages = [];
+
+// Load photos into gallery
+photoFiles.forEach((filename, index) => {
+  const photoItem = document.createElement("div");
+  photoItem.classList.add("photo-grid-item");
+
+  const img = document.createElement("img");
+  img.src = `images/photos/${filename}`;
+  img.alt = `Gallery Photo ${index + 1}`;
+  img.loading = "lazy";
+
+  photoItem.appendChild(img);
+  photoGrid.appendChild(photoItem);
+
+  galleryImages.push(img.src);
+
+  // Add click event for lightbox
+  photoItem.addEventListener("click", () => openLightbox(index));
+});
+
+// Lightbox functionality
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-img");
+const lightboxClose = document.querySelector(".lightbox-close");
+const lightboxPrev = document.querySelector(".lightbox-prev");
+const lightboxNext = document.querySelector(".lightbox-next");
+let currentLightboxIndex = 0;
+
+function openLightbox(index) {
+  currentLightboxIndex = index;
+  lightboxImg.src = galleryImages[index];
+  lightbox.classList.add("active");
+  document.body.style.overflow = "hidden";
+}
+
+function closeLightbox() {
+  lightbox.classList.remove("active");
+  document.body.style.overflow = "auto";
+}
+
+function showLightboxImage(index) {
+  if (index >= galleryImages.length) {
+    currentLightboxIndex = 0;
+  } else if (index < 0) {
+    currentLightboxIndex = galleryImages.length - 1;
+  } else {
+    currentLightboxIndex = index;
+  }
+  lightboxImg.src = galleryImages[currentLightboxIndex];
+}
+
+// Lightbox event listeners
+lightboxClose.addEventListener("click", closeLightbox);
+
+lightbox.addEventListener("click", (e) => {
+  if (e.target === lightbox) {
+    closeLightbox();
+  }
+});
+
+lightboxPrev.addEventListener("click", (e) => {
+  e.stopPropagation();
+  showLightboxImage(currentLightboxIndex - 1);
+});
+
+lightboxNext.addEventListener("click", (e) => {
+  e.stopPropagation();
+  showLightboxImage(currentLightboxIndex + 1);
+});
+
+// Keyboard navigation for lightbox
+document.addEventListener("keydown", (e) => {
+  if (lightbox.classList.contains("active")) {
+    if (e.key === "Escape") {
+      closeLightbox();
+    } else if (e.key === "ArrowLeft") {
+      showLightboxImage(currentLightboxIndex - 1);
+    } else if (e.key === "ArrowRight") {
+      showLightboxImage(currentLightboxIndex + 1);
+    }
+  }
 });

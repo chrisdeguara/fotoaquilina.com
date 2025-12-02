@@ -34,7 +34,7 @@
         <ul class="nav-links">
           <li><a href="#home">Home</a></li>
           <li><a href="#about">About</a></li>
-          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#gallery">Gallery</a></li>
           <li><a href="#contact">Contact</a></li>
           <li>
             <a
@@ -56,15 +56,65 @@
       </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero Section with Slider -->
     <section id="home" class="hero">
+      <div class="slider-container hero-slider">
+        <div class="slider">
+          <div class="slide active">
+            <img src="images/photos/0M7A4857.jpg" alt="Sports Photography 1" />
+          </div>
+          <div class="slide">
+            <img src="images/photos/0M7A6596.jpg" alt="Sports Photography 2" />
+          </div>
+          <div class="slide">
+            <img src="images/photos/0M7A9144.jpg" alt="Sports Photography 3" />
+          </div>
+          <div class="slide">
+            <img src="images/photos/BB9I4613.jpg" alt="Sports Photography 4" />
+          </div>
+          <div class="slide">
+            <img src="images/photos/BB9I5630.jpg" alt="Sports Photography 5" />
+          </div>
+          <div class="slide">
+            <img src="images/photos/C80I5348.jpg" alt="Sports Photography 6" />
+          </div>
+          <div class="slide">
+            <img src="images/photos/CM6A7367.jpg" alt="Sports Photography 7" />
+          </div>
+          <div class="slide">
+            <img
+              src="images/photos/DA_074A3288.jpg"
+              alt="Sports Photography 8"
+            />
+          </div>
+          <div class="slide">
+            <img
+              src="images/photos/DA_074A5002.jpg"
+              alt="Sports Photography 9"
+            />
+          </div>
+          <div class="slide">
+            <img
+              src="images/photos/DA_0M7A6223.jpg"
+              alt="Sports Photography 10"
+            />
+          </div>
+        </div>
+        <button class="slider-btn prev" onclick="moveSlide(-1)">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="slider-btn next" onclick="moveSlide(1)">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+        <div class="slider-dots"></div>
+      </div>
       <div class="hero-content">
         <h1>Domenic Aquilina</h1>
         <p class="tagline">
           UEFA Official Photojournalist | Award-Winning Sports Photography
         </p>
-        <a href="#portfolio" class="cta-button"
-          >View Portfolio <i class="fas fa-images"></i
+        <a href="#gallery" class="cta-button"
+          >View Gallery <i class="fas fa-images"></i
         ></a>
       </div>
     </section>
@@ -75,7 +125,7 @@
         <h2 class="section-title">About Me</h2>
         <div class="about-content">
           <div class="about-text">
-            <p class="intro">
+            <p>
               Born on August 2nd, 1957 in Senglea, Malta, Domenic has been
               involved in the photojournalism sphere since his early twenties.
             </p>
@@ -134,75 +184,43 @@
                   </li>
                 </ul>
               </div>
+
+              <div class="book-info">
+                <h3>The Malta Falcon</h3>
+                <p>
+                  In January 2023, Domenic launched his personal autobiography
+                  <strong>"The Malta Falcon"</strong>, donating all proceeds to
+                  Hospice Malta, an NGO which provides the highest standards of
+                  palliative care on the island free of charge.
+                </p>
+              </div>
             </div>
-
-            <p class="book-info">
-              In January 2023, Domenic launched his personal autobiography
-              <strong>"The Malta Falcon"</strong>, donating all proceeds to
-              Hospice Malta, an NGO which provides the highest standards of
-              palliative care on the island free of charge.
-            </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Portfolio Section with Slider -->
-    <section id="portfolio" class="portfolio">
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
       <div class="container">
-        <h2 class="section-title">Portfolio</h2>
-      </div>
-      <div class="slider-container">
-        <div class="slider">
-          <div class="slide active">
-            <img src="images/photos/0M7A4857.jpg" alt="Sports Photography 1" />
-          </div>
-          <div class="slide">
-            <img src="images/photos/0M7A6596.jpg" alt="Sports Photography 2" />
-          </div>
-          <div class="slide">
-            <img src="images/photos/0M7A9144.jpg" alt="Sports Photography 3" />
-          </div>
-          <div class="slide">
-            <img src="images/photos/BB9I4613.jpg" alt="Sports Photography 4" />
-          </div>
-          <div class="slide">
-            <img src="images/photos/BB9I5630.jpg" alt="Sports Photography 5" />
-          </div>
-          <div class="slide">
-            <img src="images/photos/C80I5348.jpg" alt="Sports Photography 6" />
-          </div>
-          <div class="slide">
-            <img src="images/photos/CM6A7367.jpg" alt="Sports Photography 7" />
-          </div>
-          <div class="slide">
-            <img
-              src="images/photos/DA_074A3288.jpg"
-              alt="Sports Photography 8"
-            />
-          </div>
-          <div class="slide">
-            <img
-              src="images/photos/DA_074A5002.jpg"
-              alt="Sports Photography 9"
-            />
-          </div>
-          <div class="slide">
-            <img
-              src="images/photos/DA_0M7A6223.jpg"
-              alt="Sports Photography 10"
-            />
-          </div>
+        <h2 class="section-title">Photo Gallery</h2>
+        <div id="photo-grid" class="photo-grid">
+          <!-- Photos will be loaded dynamically -->
         </div>
-        <button class="slider-btn prev" onclick="moveSlide(-1)">
-          <i class="fas fa-chevron-left"></i>
-        </button>
-        <button class="slider-btn next" onclick="moveSlide(1)">
-          <i class="fas fa-chevron-right"></i>
-        </button>
-        <div class="slider-dots"></div>
       </div>
     </section>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+      <span class="lightbox-close">&times;</span>
+      <img class="lightbox-content" id="lightbox-img" />
+      <button class="lightbox-btn lightbox-prev">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <button class="lightbox-btn lightbox-next">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    </div>
 
     <!-- Contact Section -->
     <section id="contact" class="contact">

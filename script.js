@@ -165,7 +165,9 @@ const navLinks = document.querySelector(".nav-links");
 mobileMenuToggle.addEventListener("click", () => {
   mobileMenuToggle.classList.toggle("active");
   navLinks.classList.toggle("active");
-  document.body.style.overflow = navLinks.classList.contains("active") ? "hidden" : "auto";
+  document.body.style.overflow = navLinks.classList.contains("active")
+    ? "hidden"
+    : "auto";
 });
 
 // Close mobile menu when clicking a link

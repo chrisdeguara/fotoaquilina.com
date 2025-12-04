@@ -678,6 +678,12 @@ section {
   transform: translateX(10px);
 }
 
+.social-link.instagram:hover {
+  background: #E4405F;
+  color: var(--white);
+  transform: translateX(10px);
+}
+
 .contact-text {
   line-height: 1.8;
   color: var(--text-color);

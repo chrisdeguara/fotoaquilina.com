@@ -86,6 +86,32 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
+// Touch navigation for mobile
+let startX = 0;
+let endX = 0;
+
+sliderContainer.addEventListener("touchstart", (e) => {
+  startX = e.touches[0].clientX;
+});
+
+sliderContainer.addEventListener("touchmove", (e) => {
+  // Prevent scrolling while swiping
+  e.preventDefault();
+});
+
+sliderContainer.addEventListener("touchend", (e) => {
+  endX = e.changedTouches[0].clientX;
+  const diffX = startX - endX;
+
+  if (Math.abs(diffX) > 50) { // Minimum swipe distance
+    if (diffX > 0) {
+      moveSlide(1); // Swipe left, next slide
+    } else {
+      moveSlide(-1); // Swipe right, previous slide
+    }
+  }
+});
+
 // Contact form handling
 const contactForm = document.getElementById("contactForm");
 
